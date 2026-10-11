@@ -1,5 +1,5 @@
-# Pull down website translations from Crowdin every two hours or when triggered manually.
-# Schedule and workflow_dispatch always download. workflow_call downloads when
+# Pull down website translations from Crowdin when manually triggered or called by another workflow.
+# workflow_dispatch always downloads. workflow_call downloads when
 # force_pull is true. We cannot gate on `lingui compile --strict`: English is the
 # fallback locale, so empty msgstr values compile successfully.
 
@@ -10,8 +10,6 @@ permissions:
   pull-requests: write
 
 on:
-  schedule:
-    - cron: '0 */2 * * *' # Every two hours.
   workflow_dispatch:
   workflow_call:
     inputs:
